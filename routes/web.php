@@ -1,13 +1,11 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SoundController;
 use App\Models\Post;
-use Illuminate\Foundation\Application;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,14 +19,21 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    if(Auth::check()) {
+    if (Auth::check()) {
         return Redirect::route('discover');
     } else {
         return Redirect::route('welcome');
     }
 })->name('home');
 
-Route::inertia('/discover','Discover')->name('discover');
+//Route::inertia('/discover', 'Discover')->name('discover');
+Route::get('/discover', [SoundController::class, 'index'])->name('discover');
 Route::inertia('/welcome', 'Welcome')->name('welcome');
 
-require __DIR__.'/auth.php';
+Route::group(['prefix' => 'sound', 'as' => 'sound.'], function () {
+    Route::get('/create', [SoundController::class, 'create'])->name('create');
+    Route::post('/', [SoundController::class, 'store'])->name('store');
+});
+
+
+require __DIR__ . '/auth.php';

@@ -13,6 +13,9 @@
 
       <!--When User is Authorized-->
       <template v-else>
+        <div class="px-4">
+          <Link :href="route('sound.create')" class="px-2">Add Sound</Link>
+        </div>
         <div class="relative px-4">
           <button @click="isHamburgerPop = !isHamburgerPop"
                   class="text-white text-3xl font-indie text-center">
