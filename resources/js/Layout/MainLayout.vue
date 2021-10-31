@@ -59,6 +59,7 @@
       }
     },
     mounted() {
+      console.log("Mounted");
     }
 
   }

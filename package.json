@@ -27,6 +27,8 @@
         "vue-loader": "^16.1.2"
     },
     "dependencies": {
-        "vue3-recaptcha-v2": "^1.0.0"
+        "howler": "^2.2.3",
+        "vue3-recaptcha-v2": "^1.0.0",
+        "vuex": "^4.0.2"
     }
 }

@@ -10,10 +10,23 @@ class SoundController extends Controller
 {
     public function index() {
 
-        $sound = Sound::find(1)->getMedia();
+        $sounds = Sound::all();
 
+        $mediaCollection = [];
+
+
+        $mediaUrls = [];
+
+        foreach($sounds as $sound) {
+            $mediaCollection[] = $sound->getMedia();
+        }
+        for($i = 0; $i < count($mediaCollection); $i++) {
+            for($k = 0; $k < count($mediaCollection[$i]); $k++) {
+                $mediaUrls[] = ['id' => $i + $k, 'url' => $mediaCollection[$i][$k]->getUrl()];
+            }
+        }
         return Inertia::render('Discover', [
-            'sounds' => $sound[0]->getUrl()
+            'sounds' => $mediaUrls
         ]);
     }
 
