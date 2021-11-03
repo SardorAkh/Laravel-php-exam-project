@@ -6,7 +6,7 @@
 
         <div v-for="(sound, index) of soundsList" :key="sound.id">
           <v-player :sound-url="sound.url" v-if="sound.isPlayerOpen" @player-close="sound.isPlayerOpen = !sound.isPlayerOpen"/>
-          <button @click="sound.isPlayerOpen = !sound.isPlayerOpen">
+          <button @click="openPlayer(sound, $event)">
             {{sound.url}}
           </button>
         </div>
@@ -40,12 +40,12 @@
         soundsList: this.sounds.map((sound) => {
           return {...sound, isPlayerOpen: false}
         }),
-        isPlayerOpen: false,
       }
     },
     methods: {
-      openPlayer(soundUrl) {
-
+      openPlayer(sound, e) {
+        sound.isPlayerOpen = !sound.isPlayerOpen;
+        e.target.blur()
       }
     },
   }
