@@ -19909,7 +19909,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Discover",
   props: {
-    sounds: Array
+    sounds: Object
   },
   components: {
     'v-button': _Components_Button__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -19918,19 +19918,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      soundsList: this.sounds.map(function (sound) {
+      soundsList: this.sounds.data.map(function (sound) {
         return _objectSpread(_objectSpread({}, sound), {}, {
           isPlayerOpen: false
         });
       })
     };
   },
-  methods: {
-    openPlayer: function openPlayer(sound, e) {
-      sound.isPlayerOpen = !sound.isPlayerOpen;
-      e.target.blur();
-    }
-  }
+  methods: {}
 });
 
 /***/ }),
@@ -20039,7 +20034,7 @@ var _hoisted_1 = {
   "class": "bg-secondary text-white w-2/5"
 };
 var _hoisted_2 = {
-  "class": "w-full flex justify-end pt-2 px-4 mb-8"
+  "class": "w-full flex justify-end pt-2 px-8 mb-8"
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
@@ -20202,7 +20197,7 @@ var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "class": "flex transition-all hover:text-primary"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
-  "class": "h-6 w-6 hover:stroke-primary",
+  "class": "h-6 w-6",
   viewBox: "0 0 20 20",
   fill: "currentColor"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
@@ -20957,7 +20952,7 @@ var _hoisted_1 = {
   "class": "w-full py-8 h-full grid grid-cols-6 gap-12 pl-20"
 };
 var _hoisted_2 = {
-  "class": "bg-secondary h-full col-span-5 col-start-1"
+  "class": "bg-secondary h-full col-span-5 col-start-1 px-4 py-2"
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
@@ -20966,11 +20961,17 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_4 = ["onClick"];
+var _hoisted_4 = {
+  "class": "divide-y divide-primary"
+};
+var _hoisted_5 = ["onClick"];
+var _hoisted_6 = {
+  "class": ""
+};
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", {
-  "class": "bg-secondary h-full col-start-6"
-}, "Categories", -1
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", {
+  "class": "bg-secondary h-full col-start-6 px-4 py-2"
+}, " Categories ", -1
 /* HOISTED */
 );
 
@@ -20981,10 +20982,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_main_layout, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_2, [_hoisted_3, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.soundsList, function (sound, index) {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-          key: sound.id
-        }, [sound.isPlayerOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_v_player, {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ol", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.soundsList, function (sound, index) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+          key: sound.id,
+          "class": "text-white flex p-4 py-2"
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(index + 1) + ". ", 1
+        /* TEXT */
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+          onClick: function onClick($event) {
+            return sound.isPlayerOpen = !sound.isPlayerOpen;
+          }
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(sound.title), 9
+        /* TEXT, PROPS */
+        , _hoisted_5), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(sound.user.name), 1
+        /* TEXT */
+        )]), sound.isPlayerOpen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_v_player, {
           key: 0,
           "sound-url": sound.url,
           onPlayerClose: function onPlayerClose($event) {
@@ -20992,16 +21004,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }
         }, null, 8
         /* PROPS */
-        , ["sound-url", "onPlayerClose"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-          onClick: function onClick($event) {
-            return $options.openPlayer(sound, $event);
-          }
-        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(sound.url), 9
-        /* TEXT, PROPS */
-        , _hoisted_4)]);
+        , ["sound-url", "onPlayerClose"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
       }), 128
       /* KEYED_FRAGMENT */
-      ))]), _hoisted_5])];
+      ))])]), _hoisted_7])];
     }),
     _: 1
     /* STABLE */

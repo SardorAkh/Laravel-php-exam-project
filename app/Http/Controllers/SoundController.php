@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SoundResource;
 use App\Models\Sound;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -10,23 +11,10 @@ class SoundController extends Controller
 {
     public function index() {
 
-        $sounds = Sound::all();
+        $collection = SoundResource::collection(Sound::with('User')->get());
 
-        $mediaCollection = [];
-
-
-        $mediaUrls = [];
-
-        foreach($sounds as $sound) {
-            $mediaCollection[] = $sound->getMedia();
-        }
-        for($i = 0; $i < count($mediaCollection); $i++) {
-            for($k = 0; $k < count($mediaCollection[$i]); $k++) {
-                $mediaUrls[] = ['id' => $i + $k, 'url' => $mediaCollection[$i][$k]->getUrl()];
-            }
-        }
         return Inertia::render('Discover', [
-            'sounds' => $mediaUrls
+            'sounds' => $collection
         ]);
     }
 
