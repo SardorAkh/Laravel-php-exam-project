@@ -33,6 +33,7 @@ Route::inertia('/welcome', 'Welcome')->name('welcome');
 Route::group(['prefix' => 'sound', 'as' => 'sound.'], function () {
     Route::get('/create', [SoundController::class, 'create'])->name('create');
     Route::post('/', [SoundController::class, 'store'])->name('store');
+    Route::get('/download/{id}', [SoundController::class, 'download'])->name('download');
 });
 
 

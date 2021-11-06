@@ -28,7 +28,6 @@
     },
     "dependencies": {
         "howler": "^2.2.3",
-        "vue3-recaptcha-v2": "^1.0.0",
-        "vuex": "^4.0.2"
+        "vue3-recaptcha-v2": "^1.0.0"
     }
 }

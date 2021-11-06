@@ -11,6 +11,17 @@
           <v-input type="text" v-model="form.title" id="title"/>
         </div>
         <div class="mt-4 flex flex-col">
+          <label for="category" class="text-white">Category</label>
+          <select
+            v-model="form.category"
+            class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+            id="category">
+            <option v-for="category in categories" :key="category.id" :value="category.id">
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
+        <div class="mt-4 flex flex-col">
           <label for="sound" class="text-white">Sound</label>
           <v-input type="file" @input="form.sound = $event.target.files[0]" id="sound"/>
         </div>
@@ -36,10 +47,14 @@
       MainLayout,
       Head
     },
+    props: {
+      categories: Array,
+    },
     data() {
       return {
         form: useForm({
           title: null,
+          category:null,
           user_id: this.$page.props.auth.user.id,
           sound: null,
         })

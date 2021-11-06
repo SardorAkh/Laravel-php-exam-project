@@ -11,14 +11,16 @@ class Sound extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
+    protected $fillable = [
+        'title', 'user_id'
+    ];
 
     public function User() {
         return $this->belongsTo(User::class);
     }
 
-    protected $fillable = [
-        'title', 'user_id'
-    ];
-
+    public function Categories() {
+        return $this->hasManyThrough(Category::class, SoundsCategories::class);
+    }
 
 }

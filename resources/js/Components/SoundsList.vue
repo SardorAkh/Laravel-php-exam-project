@@ -13,19 +13,23 @@
       </div>
       <v-player
         v-if="sound.isPlayerOpen"
+        :download-url="route('sound.download', sound.id)"
         :sound-url="sound.url"
-        @player-close="sound.isPlayerOpen = !sound.isPlayerOpen"/>
+        @player-close="sound.isPlayerOpen = !sound.isPlayerOpen"
+      />
     </li>
   </ol>
 </template>
 
 <script>
-import Player from "@/Components/Player";
 
+import Player from "@/Components/Player";
+import { Link } from "@inertiajs/inertia-vue3";
 export default {
   name: "SoundsList",
   components: {
     'v-player' : Player,
+    Link
   },
   props: {
     sounds : {
@@ -39,7 +43,26 @@ export default {
         return {...sound, isPlayerOpen: false}
       }),
     }
-  }
+  },
+  methods: {
+    download(soundId) {
+      const URL = this.route('sound.download');
+
+      this.$inertia.post(URL, {
+        id: soundId
+      }, {
+        forceFormData: true,
+      })
+      // this.$inertia.post(URL,
+      //         {
+      //           'id': soundId
+      //         },
+      //         {
+      //           preserveState: true,
+      //           preserveScroll: true
+      //         })
+    }
+  },
 }
 </script>
 

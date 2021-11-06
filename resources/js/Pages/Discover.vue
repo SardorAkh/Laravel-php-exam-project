@@ -8,13 +8,12 @@
       <aside class="bg-secondary h-full col-start-6 px-4 py-2 text-center text-white">
         <h2 class="text-3xl text-bold">Categories</h2>
         <ul class="text-2xl">
-          <li>Fire</li>
-          <li>Fire</li>
-          <li>Fire</li>
-          <li>Fire</li>
-          <li>Fire</li>
-          <li>Fire</li>
-          <li>Fire</li>
+          <li v-for="category in categories"
+              :key="category.id"
+              class="hover:text-primary"
+          >
+            <Link href="#">{{ category.name }}</Link>
+          </li>
         </ul>
       </aside>
     </div>
@@ -26,16 +25,19 @@
   import MainLayout from "@/Layout/MainLayout";
   import Button from "@/Components/Button";
   import SoundsList from "@/Components/SoundsList";
+  import {Link} from "@inertiajs/inertia-vue3";
 
   export default {
     name: "Discover",
-    props: {
-      sounds: Object
-    },
     components: {
       'v-button': Button,
       'main-layout': MainLayout,
-      SoundsList
+      SoundsList,
+      Link
+    },
+    props: {
+      sounds: Object,
+      categories: Array,
     },
   }
 </script>
