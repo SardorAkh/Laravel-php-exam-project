@@ -20,7 +20,7 @@ class Sound extends Model implements HasMedia
     }
 
     public function Categories() {
-        return $this->hasManyThrough(Category::class, SoundsCategories::class);
+        return $this->belongsToMany(Category::class, 'sounds_categories','sound_id','category_id');
     }
 
 }

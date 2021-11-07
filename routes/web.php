@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SoundController;
-use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -26,14 +25,18 @@ Route::get('/', function () {
     }
 })->name('home');
 
-//Route::inertia('/discover', 'Discover')->name('discover');
 Route::get('/discover', [SoundController::class, 'index'])->name('discover');
 Route::inertia('/welcome', 'Welcome')->name('welcome');
 
 Route::group(['prefix' => 'sound', 'as' => 'sound.'], function () {
-    Route::get('/create', [SoundController::class, 'create'])->name('create');
-    Route::post('/', [SoundController::class, 'store'])->name('store');
+    Route::group(['middleware'=> 'auth'], function() {
+        Route::get('/create', [SoundController::class, 'create'])->name('create');
+        Route::post('/', [SoundController::class, 'store'])->name('store');
+    });
     Route::get('/download/{id}', [SoundController::class, 'download'])->name('download');
+
+    Route::get('/categories/{category_id}', [CategoryController::class, 'show'])->name('category.show');
+
 });
 
 

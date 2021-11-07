@@ -45,23 +45,7 @@ export default {
     }
   },
   methods: {
-    download(soundId) {
-      const URL = this.route('sound.download');
 
-      this.$inertia.post(URL, {
-        id: soundId
-      }, {
-        forceFormData: true,
-      })
-      // this.$inertia.post(URL,
-      //         {
-      //           'id': soundId
-      //         },
-      //         {
-      //           preserveState: true,
-      //           preserveScroll: true
-      //         })
-    }
   },
 }
 </script>

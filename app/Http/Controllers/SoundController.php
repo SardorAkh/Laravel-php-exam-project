@@ -20,12 +20,14 @@ class SoundController extends Controller
                 ->get()
         );
         return Inertia::render('Discover', [
+            'title' => 'Latest',
             'sounds' => $collection,
             'categories' => Category::all(),
         ]);
     }
 
     public function create() {
+
         return Inertia::render('AddSound',[
             'categories' => Category::all()
         ]);
@@ -36,12 +38,12 @@ class SoundController extends Controller
             'title' => $request->input('title'),
             'user_id' => $request->input('user_id')
         ]);
-
+        // creating category for multiple instances
         SoundsCategories::create([
             'sound_id' => $sound->id,
             'category_id' => $request->input('category')
         ]);
-
+        // Add to media folder (public/media)
         $sound
             ->addMedia($request->file('sound'))
             ->toMediaCollection('sound');
