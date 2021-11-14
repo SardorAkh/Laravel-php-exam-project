@@ -10,8 +10,8 @@
         <validation-errors class="mb-4"/>
 
         <div class="flex flex-col mb-4">
-          <label for="name" class="text-white"></label>
-          <v-input type="text" id="name" v-model="form.name" placeholder="name" autocomplete="name" autofocus required />
+          <label for="username" class="text-white"></label>
+          <v-input type="text" id="username" v-model="form.username" placeholder="username" autocomplete="username" autofocus required />
         </div>
         <div class="flex flex-col mb-4">
           <label for="email" class="text-white"></label>
@@ -60,7 +60,7 @@
     data() {
       return {
         form: useForm({
-          name: null,
+          username: null,
           email: null,
           password: null,
           password_confirmation: null,

@@ -3,7 +3,7 @@
        @click.self="$emit('playerClose')">
     <div class="bg-secondary text-white w-2/5">
       <div class="w-full flex justify-end pt-2 px-8 mb-8">
-        <button @click="$emit('playerClose')">
+        <button @click="$emit('playerClose')" title="Close">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-all hover:stroke-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
@@ -16,7 +16,8 @@
       <div class="flex px-8">
         {{trackLapse}}
         <div id="seekBar"
-             class="w-full border border-white py-2 relative z-25 mx-1 rounded overflow-hidden">
+             class="w-full border border-white py-2 relative z-25 mx-1 rounded overflow-hidden"
+             title="Track seek">
           <div>
             <div id="seekPosition" class="absolute left-0 top-0 bottom-0 bg-primary"></div>
             <div class="absolute inset-0 cursor-pointer" @click.self="seek($event)"></div>
@@ -28,7 +29,7 @@
 <!-- Controllers-->
       <div class="flex py-2 px-8 items-center justify-between">
         <div class="flex items-center">
-          <button v-if="!isSongPlaying" @click="play" class="h-full">
+          <button v-if="!isSongPlaying" @click="play" class="h-full" title="Play">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 transition-all hover:stroke-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 
@@ -36,19 +37,19 @@
             </svg>
           </button>
 
-          <button v-else @click="pause" class="h-full">
+          <button v-else @click="pause" class="h-full" title="Pause">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 transition-all hover:stroke-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </button>
-          <button @click="stop" class="h-full">
+          <button @click="stop" class="h-full" title="Stop">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 transition-all hover:stroke-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" />
             </svg>
           </button>
         </div>
-        <div class="flex">
+        <div class="flex" title="Volume">
           <div>
             <svg
               v-if="volume"

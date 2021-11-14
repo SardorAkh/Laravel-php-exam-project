@@ -23,6 +23,7 @@
           <vue-recaptcha
             :tabindex="0"
             @verify="callbackVerify($event)"
+            @expired="callbackExpired"
             @widgetId="form.recaptcha = $event"
             size="normal"
             theme="dark"
@@ -65,6 +66,9 @@
     methods: {
       callbackVerify(response) {
         this.form.recaptcha = response;
+      },
+      callbackExpired() {
+        this.form.recaptcha = null;
       }
     }
   }

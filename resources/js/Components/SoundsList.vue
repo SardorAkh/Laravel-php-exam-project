@@ -2,14 +2,17 @@
   <ol class="divide-y divide-primary">
     <li v-for="(sound, index) of soundsList"
         :key="sound.id"
-        class="text-white flex p-4 py-2"
-    >
+        class="text-white flex p-4 py-2 hover:bg-white hover:bg-opacity-25 transition-all cursor-pointer"
+        @click.self="sound.isPlayerOpen = !sound.isPlayerOpen">
+
+      <div class="flex items-center mr-4 font-medium">
       {{index + 1}}.
+      </div>
       <div>
-        <button @click="sound.isPlayerOpen = !sound.isPlayerOpen">
+        <button @click="sound.isPlayerOpen = !sound.isPlayerOpen" class="font-medium text-xl">
           {{sound.title}}
         </button>
-        <h4 class="">{{sound.user.name}}</h4>
+        <h4 class="opacity-75 text-sm">{{sound.user.username}}</h4>
       </div>
       <v-player
         v-if="sound.isPlayerOpen"

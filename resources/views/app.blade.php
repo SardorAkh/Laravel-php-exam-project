@@ -21,11 +21,7 @@
         @routes
         <script src="{{ mix('js/app.js') }}" defer></script>
 
-        <style>
-            body {
-                background-image: url({{asset('image/background.png')}});
-            }
-        </style>
+
     </head>
     <body>
         @inertia

@@ -12,7 +12,7 @@ use Inertia\Inertia;
 
 class SoundController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
 
         $collection = SoundResource::collection(
             Sound::with('User')
@@ -23,6 +23,7 @@ class SoundController extends Controller
             'title' => 'Latest',
             'sounds' => $collection,
             'categories' => Category::all(),
+
         ]);
     }
 
@@ -34,6 +35,12 @@ class SoundController extends Controller
     }
 
     public function store(Request $request) {
+
+        $validated = $request->validate([
+            'title' => 'required',
+            'category' => 'required',
+            'sound' => 'required|file|mimetypes:audio/mpeg,audio/ogg,audio/mp4',
+        ]);
         $sound = Sound::create([
             'title' => $request->input('title'),
             'user_id' => $request->input('user_id')
@@ -50,6 +57,7 @@ class SoundController extends Controller
 
         return Redirect::route('discover');
     }
+
 
     public function download(Request $request) {
         return Sound::find($request->id)->getMedia('sound')[0];
