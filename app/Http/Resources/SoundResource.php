@@ -17,6 +17,7 @@ class SoundResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'description' => $this->description,
             'categories' => $this->Categories,
             'url' => $this->getMedia('sound')[0]->getUrl(),
             'user' => new UserResource($this->user),

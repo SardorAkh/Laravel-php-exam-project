@@ -16,8 +16,8 @@ class CreateSoundsTable extends Migration
         Schema::create('sounds', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
-//            $table->boolean('is_approved')->default(0);
+            $table->string('description')->nullable();
+            $table->boolean('is_approved')->default(0);
             $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });

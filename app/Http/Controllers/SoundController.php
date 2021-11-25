@@ -17,6 +17,7 @@ class SoundController extends Controller
         $collection = SoundResource::collection(
             Sound::with('User')
                 ->orderBy('created_at','desc')
+                ->where('is_approved',true)
                 ->get()
         );
         return Inertia::render('Discover', [
@@ -43,6 +44,7 @@ class SoundController extends Controller
         ]);
         $sound = Sound::create([
             'title' => $request->input('title'),
+            'description' => $request->input('description'),
             'user_id' => $request->input('user_id')
         ]);
         // creating category for multiple instances

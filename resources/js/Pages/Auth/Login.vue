@@ -29,7 +29,7 @@
             theme="dark"
           />
         </div>
-        <v-button :class="{'opacity-25' : form.processing}" :disabled="form.processing" type="submit">Login</v-button>
+        <v-button class="w-full" :class="{'opacity-25' : form.processing}" :disabled="form.processing" type="submit">Login</v-button>
       </form>
     </div>
   </main-layout>

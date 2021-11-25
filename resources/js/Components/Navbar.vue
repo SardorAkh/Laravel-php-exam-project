@@ -51,11 +51,11 @@
           <ul class="absolute left-0 right-0 top-[140%] bg-white rounded divide-y divide-secondary text-center"
               v-if="isHamburgerPop">
             <li v-if="$page.props.auth?.is_admin" class="py-2 hover:bg-gray-300">
-              <Link :href="route('admin_panel')" class="w-full block">Admin Panel</Link>
+              <Link :href="route('admin_panel.index')" class="w-full block">Admin Panel</Link>
             </li>
             <li class="py-2 hover:bg-gray-300">settings</li>
             <li class="py-2 hover:bg-gray-300">
-              <Link :href="route('logout')" class="w-full block"
+              <Link :href="route('logout')" as="button" class="w-full block"
                     method="POST">Logout
               </Link>
             </li>
@@ -78,11 +78,11 @@
           <ul class="absolute left-0 right-0 top-[140%] bg-white rounded divide-y divide-secondary text-center"
               v-if="isHamburgerPop">
             <li v-if="$page.props.auth?.is_admin" class="py-2 hover:bg-gray-300">
-              <Link :href="route('admin_panel')" class="w-full block">Admin Panel</Link>
+              <Link :href="route('admin_panel.index')" class="w-full block">Admin Panel</Link>
             </li>
             <li class="py-2 hover:bg-gray-300">settings</li>
             <li class="py-2 hover:bg-gray-300">
-              <Link :href="route('logout')" class="w-full block"
+              <Link :href="route('logout')" as="button" class="w-full block"
                     method="POST">Logout
               </Link>
             </li>

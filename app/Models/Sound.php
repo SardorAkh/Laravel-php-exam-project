@@ -12,7 +12,7 @@ class Sound extends Model implements HasMedia
     use HasFactory, InteractsWithMedia;
 
     protected $fillable = [
-        'title', 'user_id'
+        'title', 'user_id', 'description'
     ];
 
     public function User() {

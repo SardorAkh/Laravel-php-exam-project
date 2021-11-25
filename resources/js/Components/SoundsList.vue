@@ -14,12 +14,7 @@
         </button>
         <h4 class="opacity-75 text-sm">{{sound.user.username}}</h4>
       </div>
-      <v-player
-        v-if="sound.isPlayerOpen"
-        :download-url="route('sound.download', sound.id)"
-        :sound-url="sound.url"
-        @player-close="sound.isPlayerOpen = !sound.isPlayerOpen"
-      />
+
     </li>
   </ol>
 </template>

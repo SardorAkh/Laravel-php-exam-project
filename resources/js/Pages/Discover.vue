@@ -28,14 +28,12 @@
 
 <script>
   import MainLayout from "@/Layout/MainLayout";
-  import Button from "@/Components/Button";
   import SoundsList from "@/Components/SoundsList";
   import {Link, Head} from "@inertiajs/inertia-vue3";
 
   export default {
     name: "Discover",
     components: {
-      'v-button': Button,
       'main-layout': MainLayout,
       SoundsList,
       Link, Head,

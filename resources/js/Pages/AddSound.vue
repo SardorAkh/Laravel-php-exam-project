@@ -37,7 +37,7 @@
             {{ form.progress.percentage }}%
           </progress>
         </div>
-        <v-button type="submit" class="mt-4">Save</v-button>
+        <v-button type="submit" :disabled="form.progress" class="mt-4 w-full">Save</v-button>
       </form>
     </div>
   </main-layout>
