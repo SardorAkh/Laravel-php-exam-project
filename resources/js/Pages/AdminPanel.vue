@@ -350,7 +350,7 @@
       },
       deleteUser(id) {
         Inertia.delete(this.route('admin_panel.users.destroy',{id}),{
-          onBefore: () => confirm('Are you sure to delete this user?')
+          onBefore: () => confirm('Are you sure to delete this user? Music published by the user will also be deleted')
         })
       },
 

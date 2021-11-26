@@ -19,6 +19,9 @@
           >
             <Link :href="route('sound.category.show', category.id)" class="block">{{ category.name }}</Link>
           </li>
+          <li class="hover:text-primary">
+            <Link :href="route('discover')" class="block">All</Link>
+          </li>
         </ul>
       </aside>
     </div>

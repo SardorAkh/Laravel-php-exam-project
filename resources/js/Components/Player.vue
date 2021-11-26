@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed inset-0 bg-black bg-opacity-25 flex items-center justify-center"
+  <div class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-10"
        @click.self="$emit('playerClose')">
     <div class="bg-secondary text-white w-2/5">
       <div class="w-full flex justify-end pt-2 px-8 mb-8">

@@ -6,6 +6,7 @@ use App\Http\Resources\SoundResource;
 use App\Models\Category;
 use App\Models\Sound;
 use App\Models\SoundsCategories;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -36,7 +37,6 @@ class SoundController extends Controller
     }
 
     public function store(Request $request) {
-
         $validated = $request->validate([
             'title' => 'required',
             'category' => 'required',
@@ -55,14 +55,18 @@ class SoundController extends Controller
         // Add to media folder (public/media)
         $sound
             ->addMedia($request->file('sound'))
+            ->usingName(User::find($request->input('user_id'))->username . " - " . $request->input('title'))
+            ->usingFileName(User::find($request->input('user_id'))->username .
+                "-" .
+                $request->input('title') .
+                "." .
+                $request->file('sound')->getClientOriginalExtension())
             ->toMediaCollection('sound');
 
         return Redirect::route('discover');
     }
-
-
     public function download(Request $request) {
-        return Sound::find($request->id)->getMedia('sound')[0];
+        return Sound::find($request->id)->getFirstMedia('sound');
     }
 
 }

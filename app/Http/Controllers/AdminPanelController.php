@@ -52,7 +52,17 @@ class AdminPanelController extends Controller
 
     public function user_destroy(Request $request)
     {
+        $user = User::find($request->id);
+        $sounds = Sound::where('user_id',$user->id)->get();
+        foreach($sounds as $sound) {
+            SoundsCategories::destroy($sound->id);
+            $sound->delete();
+        }
+
         User::destroy($request->id);
+
+
+
         return back();
     }
 
