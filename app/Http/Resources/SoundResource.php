@@ -19,6 +19,7 @@ class SoundResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'categories' => $this->Categories,
+            'is_approved' => $this->is_approved,
             'url' => $this->getFirstMediaUrl('sound'),
             'user' => new UserResource($this->user),
         ];

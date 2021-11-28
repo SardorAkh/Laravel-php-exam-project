@@ -7,20 +7,20 @@
     </h1>
 
     <template v-if="currentPage">
-      <div class="flex-2 relative flex items-center">
+      <form @submit.prevent="search" class="flex-2 relative flex items-center">
         <v-input @keypress.enter="search"
                  class="w-full"
                  placeholder="Search..."
                  type="text"
-                 v-model="searchValue"/>
-        <button @click="search"
+                 v-model="searchForm.value"/>
+        <button type="submit"
                 class="absolute right-2 text-secondary">
           <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round"
                   stroke-width="2"/>
           </svg>
         </button>
-      </div>
+      </form>
     </template>
 
 
@@ -53,7 +53,9 @@
             <li v-if="$page.props.auth?.is_admin" class="py-2 hover:bg-gray-300">
               <Link :href="route('admin_panel.index')" class="w-full block">Admin Panel</Link>
             </li>
-            <li class="py-2 hover:bg-gray-300">settings</li>
+            <li class="py-2 hover:bg-gray-300">
+              <Link :href="route('user_sound', { username: $page.props.auth.user.username, id: $page.props.auth.user.id })">My Sounds</Link>
+            </li>
             <li class="py-2 hover:bg-gray-300">
               <Link :href="route('logout')" as="button" class="w-full block"
                     method="POST">Logout
@@ -80,7 +82,9 @@
             <li v-if="$page.props.auth?.is_admin" class="py-2 hover:bg-gray-300">
               <Link :href="route('admin_panel.index')" class="w-full block">Admin Panel</Link>
             </li>
-            <li class="py-2 hover:bg-gray-300">settings</li>
+            <li class="py-2 hover:bg-gray-300">
+              <Link :href="route('user_sound',{ username: $page.props.auth.user.username, id: $page.props.auth.user.id })">My Sounds</Link>
+            </li>
             <li class="py-2 hover:bg-gray-300">
               <Link :href="route('logout')" as="button" class="w-full block"
                     method="POST">Logout
@@ -96,7 +100,7 @@
 
 <script>
   import Input from "@/Components/Input";
-  import {Link} from "@inertiajs/inertia-vue3";
+  import {Link, useForm} from "@inertiajs/inertia-vue3";
 
   export default {
     name: "Navbar",
@@ -107,11 +111,15 @@
     data() {
       return {
         isHamburgerPop: false,
-        searchValue: null,
+        searchForm: useForm({
+          value: null
+        }),
       }
     },
     methods: {
-      search(){}
+      search() {
+        this.searchForm.get(this.route('sound.search'));
+      }
     },
     computed: {
       currentPage() {

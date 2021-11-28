@@ -26,8 +26,10 @@
         </div>
         <div class="mt-4 flex flex-col">
           <label for="sound" class="text-white">Sound</label>
-          <v-input type="file" @input="form.sound = $event.target.files[0]" id="sound"/>
+          <v-input type="file" class="text-white" @input="form.sound = $event.target.files[0]" id="sound"/>
+          <span class="text-yellow-400">File must be under 20mb</span>
         </div>
+
         <div class="mt-4 flex flex-col">
           <label for="description" class="text-white">Description</label>
           <textarea v-model="form.description" name="description" id="description" rows="10" class="w-full"></textarea>

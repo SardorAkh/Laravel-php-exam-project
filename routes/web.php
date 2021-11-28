@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/test', function() {
+});
 Route::group(['middleware' => 'is_user_block'], function() {
 
     Route::get('/', function () {
@@ -33,13 +34,14 @@ Route::group(['middleware' => 'is_user_block'], function() {
 
     Route::get('/discover', [SoundController::class, 'index'])->name('discover');
     Route::inertia('/welcome', 'Welcome')->name('welcome');
-
+    Route::get('/user/{username}/{id}',[SoundController::class, 'UserSounds'])->name('user_sound');
 
     Route::group(['prefix' => 'sound', 'as' => 'sound.'], function () {
         Route::group(['middleware'=> 'auth'], function() {
             Route::get('/create', [SoundController::class, 'create'])->name('create');
             Route::post('/', [SoundController::class, 'store'])->name('store');
         });
+        Route::get('/search', [SoundController::class, 'Search'])->name('search');
         Route::get('/download/{id}', [SoundController::class, 'download'])->name('download');
         Route::get('/categories/{category_id}', [CategoryController::class, 'show'])->name('category.show');
     });
@@ -58,7 +60,7 @@ Route::group(['middleware' => 'is_user_block'], function() {
     Route::post('/login', [AuthenticatedSessionController::class, 'store'])
         ->middleware('guest');
 
-
+//ADMIN Panel
     Route::group(['prefix' => 'admin_panel', 'as' => 'admin_panel.', 'middleware' => 'admin'],function() {
 
         Route::get('/', [AdminPanelController::class, 'index'])->name('index');
@@ -79,6 +81,7 @@ Route::group(['middleware' => 'is_user_block'], function() {
         });
     });
 });
+
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
      ->middleware('auth')
