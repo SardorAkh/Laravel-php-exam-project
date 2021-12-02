@@ -37,9 +37,9 @@
             </li>
             <li class="text-white hover:bg-white hover:bg-opacity-25">
 
-              <button @click="partialReload('complains')" class="w-full text-left py-2 px-4 text-xl font-medium">
+              <Link :href="route('admin_panel.complains.index')" class="block w-full text-left py-2 px-4 text-xl font-medium">
                 Complains
-              </button>
+              </Link>
 
             </li>
           </ul>
@@ -240,6 +240,46 @@
               </tbody>
             </table>
             <h2 class="text-white text-3xl text-center" v-else>There's not sounds to approve</h2>
+          </template>
+
+          <template v-if="$page.props.complains">
+            <h2 class="text-white text-3xl font-medium">
+              Complains
+            </h2>
+            <table class="text-white border-white border-1 border-collapse w-full table-auto" v-if="disApprovedSoundsList.length">
+              <thead>
+              <tr>
+                <th class="border px-4 py-2">Sound</th>
+                <th class="border px-4 py-2">Title</th>
+                <th class="border px-4 py-2">Play</th>
+                <th class="border px-4 py-2">Approve</th>
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr
+                v-for="sound in disApprovedSoundsList"
+                :key="sound.id" class="hover:bg-gray-100 hover:bg-opacity-25 transition-all"
+              >
+                <td class="border px-4 py-2">{{ sound.id }}</td>
+                <td class="border px-4 py-2">{{ sound.title }}</td>
+                <td class="border px-4 py-2">
+                  <button class="w-full text-center" @click="sound.isPlayerOpen = !sound.isPlayerOpen">Play</button>
+                </td>
+                <td class="border px-4 py-2">
+                  <button class="w-full text-center" @click="soundApprove(sound.id)">Approve</button>
+                </td>
+
+                <v-player
+                  v-if="sound.isPlayerOpen"
+                  :download-url="route('sound.download', sound.id)"
+                  :sound-url="sound.url"
+                  @player-close="sound.isPlayerOpen = !sound.isPlayerOpen"
+                />
+              </tr>
+              </tbody>
+            </table>
+            <h2 class="text-white text-3xl text-center" v-else>There's not complains</h2>
           </template>
 
           <div v-if="isModalActive"

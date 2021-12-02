@@ -15,6 +15,10 @@ class CreateComplainsTable extends Migration
     {
         Schema::create('complains', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('sound_id')->references('id')->on('sounds');
+            $table->string('theme');
+            $table->string('description');
+            $table->boolean('is_solved')->default(false);
             $table->timestamps();
         });
     }

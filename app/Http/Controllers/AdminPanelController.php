@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\SoundResource;
 use App\Models\Category;
+use App\Models\Complain;
 use App\Models\Sound;
 use App\Models\SoundsCategories;
 use App\Models\User;
@@ -118,4 +119,10 @@ class AdminPanelController extends Controller
         return back();
     }
 
+
+    public function complain_index() {
+        return Inertia::render('AdminPanel', [
+            'complains' => Complain::all()
+        ]);
+    }
 }

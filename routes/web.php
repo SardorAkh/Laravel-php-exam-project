@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminPanelController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ComplainController;
 use App\Http\Controllers\SoundController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,14 +38,21 @@ Route::group(['middleware' => 'is_user_block'], function() {
     Route::get('/user/{username}/{id}',[SoundController::class, 'UserSounds'])->name('user_sound');
 
     Route::group(['prefix' => 'sound', 'as' => 'sound.'], function () {
+
         Route::group(['middleware'=> 'auth'], function() {
             Route::get('/create', [SoundController::class, 'create'])->name('create');
             Route::post('/', [SoundController::class, 'store'])->name('store');
         });
+
         Route::get('/search', [SoundController::class, 'Search'])->name('search');
         Route::get('/download/{id}', [SoundController::class, 'download'])->name('download');
         Route::get('/categories/{category_id}', [CategoryController::class, 'show'])->name('category.show');
     });
+
+    Route::post('/complain', [ComplainController::class, 'store'])
+        ->middleware('auth')
+        ->name('complain');
+
 
     Route::get('/register', [RegisteredUserController::class, 'create'])
         ->middleware('guest')
@@ -78,6 +86,10 @@ Route::group(['middleware' => 'is_user_block'], function() {
             Route::put('/update/{id}', [AdminPanelController::class, 'sound_update'])->name('update');
             Route::get('/disapproved', [AdminPanelController::class, 'sound_disApproved'])->name('disApproved');
             Route::post('/approve/{id}', [AdminPanelController::class, 'sound_approve'])->name('approve');
+        });
+
+        Route::group(['prefix' => 'complains', 'as' => 'complains.'], function () {
+           Route::get('/', [AdminPanelController::class, 'complain_index'])->name('index');
         });
     });
 });
