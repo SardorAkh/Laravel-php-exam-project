@@ -19,5 +19,7 @@ class ComplainController extends Controller
             'description' => $request->input('description'),
             'sound_id' => $request->input('sound_id'),
         ]);
+
+        return back();
     }
 }

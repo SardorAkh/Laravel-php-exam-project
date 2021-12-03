@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ComplainResource;
 use App\Http\Resources\SoundResource;
 use App\Models\Category;
 use App\Models\Complain;
@@ -23,7 +24,6 @@ class AdminPanelController extends Controller
 
         return Inertia::render('AdminPanel', [
             'sounds' => Inertia::lazy(fn() => Sound::paginate(10)),
-            'categories' => Inertia::lazy(fn() => Category::all()),
         ]);
     }
 
@@ -95,9 +95,17 @@ class AdminPanelController extends Controller
 
     public function sound_update(Request $request)
     {
+
         $sound = SoundsCategories::find($request->id);
-        $sound->category_id = $request->input('category_id');
-        $sound->save();
+        if($sound) {
+            $sound->category_id = $request->input('category_id');
+            $sound->save();
+        } else {
+            SoundsCategories::create([
+                'sound_id' => $request->id,
+                'category_id' => $request->input('category_id')
+            ]);
+        }
         return back();
     }
 
@@ -120,9 +128,21 @@ class AdminPanelController extends Controller
     }
 
 
+    public function categories_index() {
+        return Inertia::render('AdminPanel', [
+            'categories' => Category::all()
+        ]);
+    }
+
+
+
     public function complain_index() {
         return Inertia::render('AdminPanel', [
-            'complains' => Complain::all()
+            'complains' => ComplainResource::collection(
+                Complain::with('Sound')
+                    ->orderBy('created_at', 'desc')
+                    ->get()
+            )
         ]);
     }
 }

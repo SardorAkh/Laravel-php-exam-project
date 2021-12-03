@@ -3,7 +3,7 @@
     <div class="h-full w-full flex justify-center items-center py-4">
       <div class="relative w-2/5 h-4/5 bg-secondary pt-2 flex flex-col items-center">
         <h2 class="text-white text-center text-3xl font-work z-40">hi. audiocloud</h2>
-        <Link :href="route('discover')" class="justify-self-center z-40">press here.</Link>
+        <Link :href="route('discover')" class="justify-self-center z-40 text-white">press here.</Link>
         <div class="absolute inset-0" id="canvasContainer"></div>
       </div>
 

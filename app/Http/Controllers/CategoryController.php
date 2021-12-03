@@ -10,6 +10,21 @@ use Inertia\Inertia;
 
 class CategoryController extends Controller
 {
+    public function destroy(Request $request) {
+        Category::destroy($request->id);
+        return back();
+    }
+    public function store(Request $request) {
+        $request->validate([
+            'name' => 'required'
+        ]);
+        Category::create([
+            'name' => $request->name
+            ]
+        );
+        return back();
+    }
+
     public function show(Request $request) {
         // Querying sounds by category
         $category = Category::where('id',$request->category_id)->first();

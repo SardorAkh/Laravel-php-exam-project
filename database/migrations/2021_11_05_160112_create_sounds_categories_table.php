@@ -15,8 +15,8 @@ class CreateSoundsCategoriesTable extends Migration
     {
         Schema::create('sounds_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sound_id')->references('id')->on('sounds');
-            $table->foreignId('category_id')->references('id')->on('categories');
+            $table->foreignId('sound_id')->references('id')->on('sounds')->cascadeOnDelete();
+            $table->foreignId('category_id')->nullable()->references('id')->on('categories')->cascadeOnDelete();
         });
     }
 

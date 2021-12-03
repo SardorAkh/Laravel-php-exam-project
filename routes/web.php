@@ -88,9 +88,18 @@ Route::group(['middleware' => 'is_user_block'], function() {
             Route::post('/approve/{id}', [AdminPanelController::class, 'sound_approve'])->name('approve');
         });
 
+        Route::group(['prefix' => 'categories', 'as' => 'categories.'], function() {
+           Route::get('/', [AdminPanelController::class, 'categories_index'])->name('index');
+            Route::post('/',[CategoryController::class, 'store'])->name('store');
+            Route::put('/update/{id}',[CategoryController::class, 'update'])->name('update');
+            Route::delete('/destroy/{id}',[CategoryController::class, 'destroy'])->name('destroy');
+        });
+
+
         Route::group(['prefix' => 'complains', 'as' => 'complains.'], function () {
            Route::get('/', [AdminPanelController::class, 'complain_index'])->name('index');
         });
+
     });
 });
 

@@ -11,4 +11,8 @@ class Complain extends Model
 
     protected $fillable = ['theme','sound_id', 'description', 'is_solved', 'user_id'];
 
+    public function Sound() {
+        return $this->belongsTo(Sound::class);
+    }
+
 }
